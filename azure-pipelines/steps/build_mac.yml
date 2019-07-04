@@ -4,7 +4,7 @@ parameters:
 
 steps:
   - bash: |
-      brew install cmake pkg-config gtk+3 poppler librsvg adwaita adwaita-icon-theme portaudio lua cppunit
+      brew install cmake pkg-config gtk+3 poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit
     displayName: 'Install dependencies'
   - bash: |
       mkdir build
