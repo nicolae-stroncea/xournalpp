@@ -3,3 +3,6 @@ parameters:
   cmake_flags: ''
 
 steps:
+  - bash: |
+      echo "Not yet implemented!"
+    displayName: 'Echo TODO'

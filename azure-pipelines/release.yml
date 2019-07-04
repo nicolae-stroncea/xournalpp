@@ -1,45 +1,45 @@
 trigger:
-- master
+  - master
 pr: none
 
 stages:
-- stage: Release
-  jobs:
-  - job: Windows
-    pool:
-      vmImage: 'vs2017-win2016'
-    displayName: 'Build for Windows'
-    steps:
-    - template: steps/build_windows.yml
-        parameters:
-          build_type: 'Release'
-          cmake_flags: ''
-    - script: |
-        set PATH=%PATH%;%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin"
-        %CD:~0,2%\msys64\usr\bin\bash -lc "./build-setup.sh"
-      workingDirectory: ./windows-setup
-      env:
-        MSYS2_ARCH: x86_64
-        MSYSTEM: MINGW64
-        CHERE_INVOKING: yes
-      displayName: 'Create Setup'
-    - task: PublishPipelineArtifact@0
-      inputs:
-        artifactName: 'windows'
-        targetPath: './windows-setup/xournalpp-setup.exe'
-      displayName: 'Publish Windows Setup'
+  - stage: Release
+    jobs:
+      - job: Windows
+        pool:
+          vmImage: 'vs2017-win2016'
+        displayName: 'Build for Windows'
+        steps:
+          - template: steps/build_windows.yml
+              parameters:
+                build_type: 'Release'
+                cmake_flags: ''
+          - script: |
+              set PATH=%PATH%;%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin"
+              %CD:~0,2%\msys64\usr\bin\bash -lc "./build-setup.sh"
+            workingDirectory: ./windows-setup
+            env:
+              MSYS2_ARCH: x86_64
+              MSYSTEM: MINGW64
+              CHERE_INVOKING: yes
+            displayName: 'Create Setup'
+          - task: PublishPipelineArtifact@0
+            inputs:
+              artifactName: 'windows'
+              targetPath: './windows-setup/xournalpp-setup.exe'
+            displayName: 'Publish Windows Setup'
 
-  - job: macOS
-    pool:
-      vmImage: 'macOS-10.13'
-    displayName: 'Build for macOS'
-    steps:
-      - template: steps/build_mac.yml
-        parameters:
-          build_type: 'Release'
-          cmake_flags: ''
-#    - bash: |
-#        ctest
-#      workingDirectory: ./build
-#      displayName: 'Run tests'
+      - job: macOS
+        pool:
+          vmImage: 'macOS-10.13'
+        displayName: 'Build for macOS'
+        steps:
+          - template: steps/build_mac.yml
+            parameters:
+              build_type: 'Release'
+              cmake_flags: ''
+#          - bash: |
+#              ctest
+#            workingDirectory: ./build
+#            displayName: 'Run tests'
 
