@@ -31,7 +31,7 @@ pacman -S git
 
 ## Install Build tools
 ```bash
-pacman -S mingw-w64-x86_64-gcc; \
+pacman -S mingw-w64-x86_64-toolchain; \
 pacman -S mingw-w64-x86_64-cmake; \
 pacman -S mingw-w64-x86_64-make; \
 pacman -S patch
