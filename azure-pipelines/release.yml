@@ -8,7 +8,7 @@ stages:
       - job: Windows
         pool:
           vmImage: 'vs2017-win2016'
-        displayName: 'Build for Windows'
+        displayName: 'Build Release for Windows'
         steps:
           - template: steps/build_windows.yml
               parameters:
