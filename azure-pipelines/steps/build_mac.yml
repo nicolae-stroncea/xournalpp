@@ -5,6 +5,8 @@ parameters:
 steps:
   - bash: |
       brew install cmake ninja pkg-config gtk+3 poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit
+      export LDFLAGS="-L=/usr/local/opt/libffi/lib"
+      export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
     displayName: 'Install dependencies'
   - bash: |
       mkdir build
