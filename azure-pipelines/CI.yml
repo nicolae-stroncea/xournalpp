@@ -49,8 +49,7 @@ stages:
         set PATH=%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem
         %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -Syuu
         %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -Syuu
-        %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -S mingw-w64-x86_64-cmake make mingw-w64-x86_64-toolchain
-        %CD:~0,2%\msys64\usr\bin\pacman --noconfirm --needed -S base-devel mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake
+        %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-make mingw-w64-x86_64-ninja patch
         %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -S mingw-w64-x86_64-poppler mingw-w64-x86_64-gtk3 mingw-w64-x86_64-libsndfile mingw-w64-x86_64-libzip
         %CD:~0,2%\msys64\usr\bin\pacman --noconfirm -Scc
       env:
@@ -87,7 +86,7 @@ stages:
     - script: |
         set PATH=%PATH%;%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin"
         %CD:~0,2%\msys64\usr\bin\bash -lc "cmake .."
-        %CD:~0,2%\msys64\usr\bin\bash -lc "make"
+        %CD:~0,2%\msys64\usr\bin\bash -lc "ninja"
       workingDirectory: ./build
       env:
         MSYS2_ARCH: x86_64
