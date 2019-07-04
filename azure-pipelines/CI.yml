@@ -27,8 +27,8 @@ stages:
         mkdir build
       displayName: 'Create build directory'
     - bash: |
-        cmake .. -DCMAKE_DEBUG_INCLUDES_LDFLAGS=ON -DENABLE_CPPUNIT=ON -DDEBUG_COMPILE=ON
-        make -j `grep processor /proc/cpuinfo | tail -c 2`
+        cmake -GNinja .. -DCMAKE_DEBUG_INCLUDES_LDFLAGS=ON -DENABLE_CPPUNIT=ON -DDEBUG_COMPILE=ON
+        ninja
       workingDirectory: ./build
       displayName: 'Build Xournal++'
     - bash: |
