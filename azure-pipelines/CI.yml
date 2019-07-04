@@ -21,7 +21,7 @@ stages:
     steps:
     - bash: |
         sudo apt-get update
-        sudo apt-get install -y cmake libcppunit-dev libgtk-3-dev libpoppler-glib-dev portaudio19-dev libsndfile-dev liblua5.3-dev libzip-dev
+        sudo apt-get install -y cmake ninja libcppunit-dev libgtk-3-dev libpoppler-glib-dev portaudio19-dev libsndfile-dev liblua5.3-dev libzip-dev
       displayName: 'Install dependencies'
     - bash: |
         mkdir build
