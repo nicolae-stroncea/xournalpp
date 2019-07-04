@@ -1,4 +1,4 @@
 ## Fix for windows
 if (WIN32)
-	set (CMAKE_GENERATOR "MSYS Makefiles" CACHE INTERNAL "" FORCE)
+	set (CMAKE_GENERATOR "CodeBlocks - Ninja" CACHE INTERNAL "" FORCE)
 endif ()
