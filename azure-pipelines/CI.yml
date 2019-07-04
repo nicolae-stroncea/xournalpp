@@ -27,7 +27,7 @@ stages:
         mkdir build
       displayName: 'Create build directory'
     - bash: |
-        sudo cmake -GNinja .. -DCMAKE_DEBUG_INCLUDES_LDFLAGS=ON -DENABLE_CPPUNIT=ON -DDEBUG_COMPILE=ON
+        cmake -GNinja .. -DCMAKE_DEBUG_INCLUDES_LDFLAGS=ON -DENABLE_CPPUNIT=ON -DDEBUG_COMPILE=ON
         ninja
       workingDirectory: ./build
       displayName: 'Build Xournal++'
