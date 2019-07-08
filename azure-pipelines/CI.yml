@@ -32,6 +32,7 @@ stages:
         pool:
           vmImage: 'vs2017-win2016'
         displayName: 'Test Xournal++ on Windows'
+        container: xournalpp/xournalpp
         steps:
           - template: steps/build_windows.yml
             parameters:
