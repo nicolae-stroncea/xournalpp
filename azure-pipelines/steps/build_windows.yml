@@ -8,12 +8,10 @@ steps:
       pacman --noconfirm -Syuu
     displayName: 'Update MSYS2'
   - script: |
-      set PATH=%PATH%;%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin"
-      %CD:~0,2%\msys64\usr\bin\bash -lc "mkdir build"
+      bash -lc "mkdir build"
     displayName: 'Create build directory'
   - script: |
-      set PATH=%PATH%;%CD:~0,2%\msys64\usr\bin;%CD:~0,2%\msys64\mingw64\bin"
-      %CD:~0,2%\msys64\usr\bin\bash -lc "cmake .. -DCMAKE_BUILD_TYPE=${{ parameters.build_type}} ${{ parameters.cmake_flags }}"
-      %CD:~0,2%\msys64\usr\bin\bash -lc "cmake --build ."
+      bash -lc "cmake .. -DCMAKE_BUILD_TYPE=${{ parameters.build_type}} ${{ parameters.cmake_flags }}"
+      bash -lc "cmake --build ."
     workingDirectory: ./build
     displayName: 'Build Xournal++'
