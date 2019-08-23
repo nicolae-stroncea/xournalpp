@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8.8)
+cmake_minimum_required (VERSION 3.1)
 
 project ("Xournal++" CXX C)
 
@@ -37,9 +37,13 @@ set (PACKAGE_DATA_DIR "${CMAKE_INSTALL_PREFIX}/share")
 # Git repo info
 include (GitRepo)
 
+## C++17 ##
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 ## C++11 ##
-include (C++11)
-CheckCXX11 (FATAL_ERROR)
+#include (C++11)
+#CheckCXX11 (FATAL_ERROR)
 
 ## os specific library ending ##
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
