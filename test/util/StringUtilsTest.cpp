@@ -14,6 +14,7 @@
 
 #include <cppunit/extensions/HelperMacros.h>
 #include <ctime>
+#include <optional>
 #include <stdlib.h>
 
 using namespace std;
@@ -28,6 +29,7 @@ class StringUtilsTest : public CppUnit::TestFixture
 	CPPUNIT_TEST(testSplitOne);
 	CPPUNIT_TEST(testEndsWith);
 	CPPUNIT_TEST(testCompare);
+	CPPUNIT_TEST(testCpp17);
 
 	CPPUNIT_TEST_SUITE_END();
 
@@ -89,6 +91,12 @@ public:
 		CPPUNIT_ASSERT_EQUAL(true, StringUtils::iequals("äää", "ÄÄÄ"));
 		CPPUNIT_ASSERT_EQUAL(true, StringUtils::iequals("ööaa", "Ööaa"));
 		CPPUNIT_ASSERT_EQUAL(false, StringUtils::iequals("ööaa", "ööaaa"));
+	}
+
+	void testCpp17()
+	{
+		std::optional<bool> a = false;
+		(void) a;
 	}
 };
 
