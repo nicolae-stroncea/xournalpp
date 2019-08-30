@@ -83,6 +83,7 @@ unset (xournalpp_SOURCES_RECURSE)
 # Used for xournalpp and xournalpp-test
 add_library (xournalpp-core OBJECT ${xournalpp_SOURCES})
 add_dependencies (xournalpp-core util)
+target_compile_features (xournalpp-core PUBLIC ${PROJECT_CXX_FEATURES})
 
 ## xournalpp main program ##
 add_executable (xournalpp

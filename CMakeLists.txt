@@ -2,11 +2,6 @@ cmake_minimum_required (VERSION 3.1)
 
 project ("Xournal++" CXX C)
 
-## C++17 ##
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
 ## Also update changelog in debian folder!
 set (CPACK_PACKAGE_VERSION_MAJOR "1")
 set (CPACK_PACKAGE_VERSION_MINOR "0")
@@ -15,6 +10,9 @@ set (PROJECT_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MIN
 set (PROJECT_PACKAGE "xournalpp")
 set (PROJECT_STRING "${PROJECT_NAME} ${PROJECT_VERSION}")
 set (PROJECT_URL "https://github.com/xournalpp/xournalpp")
+
+# We currently require C++17, to be changed here
+set (PROJECT_CXX_FEATURES cxx_std_17)
 
 set (CMAKE_MODULE_PATH
     "${PROJECT_SOURCE_DIR}/cmake/find"
