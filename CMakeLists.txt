@@ -13,6 +13,8 @@ set (PROJECT_URL "https://github.com/xournalpp/xournalpp")
 
 # We currently require C++17, to be changed here
 set (PROJECT_CXX_FEATURES cxx_std_17)
+message (STATUS "Compiler supports the following features: " "${CMAKE_CXX_COMPILE_FEATURES}")
+message (STATUS "Project requires at least " "${PROJECT_CXX_FEATURES}")
 
 set (CMAKE_MODULE_PATH
     "${PROJECT_SOURCE_DIR}/cmake/find"
