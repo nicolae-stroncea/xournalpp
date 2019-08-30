@@ -2,6 +2,11 @@ cmake_minimum_required (VERSION 3.1)
 
 project ("Xournal++" CXX C)
 
+## C++17 ##
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 ## Also update changelog in debian folder!
 set (CPACK_PACKAGE_VERSION_MAJOR "1")
 set (CPACK_PACKAGE_VERSION_MINOR "0")
@@ -36,11 +41,6 @@ set (PACKAGE_DATA_DIR "${CMAKE_INSTALL_PREFIX}/share")
 
 # Git repo info
 include (GitRepo)
-
-## C++17 ##
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
 
 ## C++11 ##
 #include (C++11)
