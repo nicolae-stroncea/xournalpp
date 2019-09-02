@@ -1,25 +1,25 @@
-cmake_minimum_required (VERSION 3.1)
+cmake_minimum_required(VERSION 3.10)
 
 project ("Xournal++" CXX C)
 
+## Project related Variables
 ## Also update changelog in debian folder!
 set (CPACK_PACKAGE_VERSION_MAJOR "1")
 set (CPACK_PACKAGE_VERSION_MINOR "0")
-set (CPACK_PACKAGE_VERSION_PATCH "13")
+set(CPACK_PACKAGE_VERSION_PATCH "19")
 set (PROJECT_VERSION "${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}.${CPACK_PACKAGE_VERSION_PATCH}")
 set (PROJECT_PACKAGE "xournalpp")
 set (PROJECT_STRING "${PROJECT_NAME} ${PROJECT_VERSION}")
 set (PROJECT_URL "https://github.com/xournalpp/xournalpp")
 
-# We currently require C++17, to be changed here
-set (PROJECT_CXX_FEATURES cxx_std_17)
-message (STATUS "Compiler supports the following features: " "${CMAKE_CXX_COMPILE_FEATURES}")
-message (STATUS "Project requires at least " "${PROJECT_CXX_FEATURES}")
+## CMAKE_Variables
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/find" "${PROJECT_SOURCE_DIR}/cmake/include")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+find_package(CXX17 REQUIRED)
 
-set (CMAKE_MODULE_PATH
-    "${PROJECT_SOURCE_DIR}/cmake/find"
-    "${PROJECT_SOURCE_DIR}/cmake/include"
-)
+add_definitions(-D_USE_MATH_DEFINES)
 
 # package version
 include (Version)
@@ -41,10 +41,6 @@ set (PACKAGE_DATA_DIR "${CMAKE_INSTALL_PREFIX}/share")
 
 # Git repo info
 include (GitRepo)
-
-## C++11 ##
-#include (C++11)
-#CheckCXX11 (FATAL_ERROR)
 
 ## os specific library ending ##
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
@@ -70,6 +66,9 @@ macro (add_includes_ldflags LDFLAGS INCLUDES)
     set (xournalpp_LDFLAGS ${xournalpp_LDFLAGS} "${LDFLAGS}")
     set (xournalpp_INCLUDE_DIRS ${xournalpp_INCLUDE_DIRS} "${INCLUDES}")
 endmacro (add_includes_ldflags LDFLAGS INCLUDES)
+
+find_package(CXX17 REQUIRED)
+set(xournalpp_LDFLAGS ${xournalpp_LDFLAGS} cxx17)
 
 # GLIB
 pkg_check_modules (Glib REQUIRED "glib-2.0 >= 2.32.0")
