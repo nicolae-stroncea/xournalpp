@@ -90,8 +90,8 @@ endif ()
 
 cmake_pop_check_state()
 
-set(std::filesystem_FOUND ${_found} CACHE BOOL "TRUE if we can compile and link a program using cxx17" FORCE)
+set(CXX17_FOUND ${_found} CACHE BOOL "TRUE if we can compile and link a program using cxx17" FORCE)
 
-if (std::filesystem_FIND_REQUIRED AND NOT std::filesystem_FOUND)
+if (CXX17_FIND_REQUIRED AND NOT CXX17_FOUND)
     message(FATAL_ERROR "Cannot Compile simple program using cxx17")
 endif ()
