@@ -11,7 +11,7 @@
 #include <iostream>
 #include <stdio.h>
 
-#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__)
+#if defined(_WIN32) || defined(_WIN32) || defined(__WIN32__)
 
 #include <windows.h>
 
@@ -46,7 +46,7 @@ inline std::string NowTime()
 	return result;
 }
 
-#endif //WIN32
+#endif //_WIN32
 
 Log::Log() { }
 
