@@ -10,11 +10,10 @@ steps:
       brew link --force gettext
     displayName: 'Install dependencies'
   - bash: |
-      mkdir build
+      /bin/bash -c "sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer"
     displayName: 'swap XCode'
   - bash: |
-      -c "sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer"
-      #https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops
+      mkdir build
     displayName: 'Create build directory'
   - bash: |
       export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
