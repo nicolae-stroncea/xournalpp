@@ -9,9 +9,9 @@ steps:
       brew install clang++8 clang-8 cmake ninja pkg-config gtk+3 gtk-mac-integration poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit gettext
       brew link --force gettext
     displayName: 'Install dependencies'
-  - bash: |
-      /bin/bash -c "sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer"
-    displayName: 'swap XCode'
+  #- bash: |
+      #/bin/bash -c "sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer"
+    #displayName: 'swap XCode'
   - bash: |
       mkdir build
     displayName: 'Create build directory'
