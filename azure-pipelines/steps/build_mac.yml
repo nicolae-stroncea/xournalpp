@@ -6,7 +6,7 @@ steps:
   - bash: |
       brew update
       brew upgrade
-      brew install cmake ninja pkg-config gtk+3 gtk-mac-integration poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit gettext
+      brew install clang++8 clang-8 cmake ninja pkg-config gtk+3 gtk-mac-integration poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit gettext
       brew link --force gettext
     displayName: 'Install dependencies'
   - bash: |
@@ -16,10 +16,10 @@ steps:
       mkdir build
     displayName: 'Create build directory'
   - bash: |
+      export CC=clang-8
+      export CXX=clang++-8
       export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
-      export LDFLAGS="-mmacosx-version-min=10.15 -L/usr/local/opt/libffi/lib $LDFLAGS"
-      export CXXFLAGS="-mmacosx-version-min=10.15"
-      export CCFLAGS="-mmacosx-version-min=10.15"
+      export LDFLAGS="-L/usr/local/opt/libffi/lib $LDFLAGS"
       cmake -GNinja .. -DCMAKE_BUILD_TYPE=${{ parameters.build_type}} ${{ parameters.cmake_flags }}
       cmake --build .
     workingDirectory: ./build
