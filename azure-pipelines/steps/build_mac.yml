@@ -6,9 +6,19 @@ steps:
   - bash: |
       brew update
       brew upgrade
-      brew install clang++8 clang-8 cmake ninja pkg-config gtk+3 gtk-mac-integration poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit gettext
+      brew install cmake ninja pkg-config gtk+3 gtk-mac-integration poppler librsvg adwaita-icon-theme portaudio libsndfile lua libzip cppunit gettext
       brew link --force gettext
     displayName: 'Install dependencies'
+  - bash: |
+      brew install --with-toolchain llvm
+      brew info llvm
+      echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.bash_profile
+      export CC := clang
+      export CXX := clang++
+      LDFLAGS += -L/usr/local/opt/llvm/lib -Wl,-rpath,/usr/local/opt/llvm/lib
+      CPPFLAGS += -I/usr/local/opt/llvm/include -I/usr/local/opt/llvm/include/c++/v1/
+      xcode-select --install
+    displayName: 'Install llvm'
   #- bash: |
       #/bin/bash -c "sudo xcode-select -s /Applications/Xcode_11.app/Contents/Developer"
     #displayName: 'swap XCode'
@@ -16,8 +26,6 @@ steps:
       mkdir build
     displayName: 'Create build directory'
   - bash: |
-      export CC=clang-8
-      export CXX=clang++-8
       export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig:$PKG_CONFIG_PATH"
       export LDFLAGS="-L/usr/local/opt/libffi/lib $LDFLAGS"
       cmake -GNinja .. -DCMAKE_BUILD_TYPE=${{ parameters.build_type}} ${{ parameters.cmake_flags }}
